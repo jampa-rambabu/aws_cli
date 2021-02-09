@@ -17,7 +17,7 @@ output "instance_ip_addr" {
   resource "aws_instance" "aws_tom" {
     ami = var.ami
     instance_type = var.ins_type
-    key_name = "sample"
+    key_name = aws_key_pair.aws_tom.key_name
     tags = {
       Name = "aws_tom"
     }
