@@ -29,11 +29,11 @@ output "instance_ip_addr" {
     connection {
       type = "ssh"
       user = "ec2-user"
-      private_key = file(var.key_pri)
-      host = "self.public_ip"
+      private_key = file(var.key_p2)
+      host = self.public_ip
     }
 
-    user_data = <<-EOF
+  user_data = <<-EOF
  #!bin/bash
   sudo amazon-linux-extras install tomcat8.5
   sudo systemctl enable tomcat
@@ -46,10 +46,10 @@ output "instance_ip_addr" {
       source = "/var/lib/jenkins/workspace/Websapps/target/PersistentWebApp.war"
       destination = "/tmp/PersistentWebApp.war"
       connection {
-        type = "ssh"
-        user = "ec2-user"
+        type    = "ssh"
+        user    = "ec2-user"
         private_key = file(var.key_p2)
-        host = "self.public_ip"
+        host    = self.public_ip
       }
     }
   }
