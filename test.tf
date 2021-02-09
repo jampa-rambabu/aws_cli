@@ -11,13 +11,18 @@ provider "aws" {
   secret_key = var.sec
   region = var.region
 }
+
+resource "awscli_key_pair" "aws_tom" {
+  key_name   = "aws_tom"
+  public_key = file(var.key_p)
+}
 output "instance_ip_addr" {
   value = format("Access the AWS hosted app from here: %s%s",aws_instance.aws_tom.*.public_ip, ":8080/PersistentWebApp")
 }
   resource "aws_instance" "aws_tom" {
     ami = var.ami
     instance_type = var.ins_type
-    key_name = aws_key_pair.aws_tom.key_name
+    key_name = awscli_key_pair.aws_tom.key_name
     tags = {
       Name = "aws_tom"
     }
