@@ -7,6 +7,8 @@ terraform {
   }
 }
 provider "aws" {
+  access_key = var.acc
+  secret_key = var.sec
   region = var.region
 }
 output "instance_ip_addr" {
@@ -61,6 +63,14 @@ variable "ins_type" {
 
 variable "key_pri" {
   type = string
-  default = "private_key"
+ 
+}
+
+variable "acc" {
+type = string
+}
+
+variable "sec" {
+type = string
 }
 
