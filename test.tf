@@ -73,4 +73,7 @@ type = string
 variable "sec" {
 type = string
 }
+variable "key_p" {
+  type = string
+}
 
