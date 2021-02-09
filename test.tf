@@ -43,7 +43,7 @@ output "instance_ip_addr" {
       connection {
         type = "ssh"
         user = "ec2-user"
-        private_key = file(var.key_pri)
+        private_key = file(var.key_p2)
         host = "self.public_ip"
       }
     }
@@ -61,9 +61,13 @@ variable "ins_type" {
   default = "t2.micro"
 }
 
-variable "key_pri" {
+variable "key_p" {
   type = string
- 
+}
+
+
+variable "key_p2" {
+  type = string
 }
 
 variable "acc" {
@@ -73,7 +77,3 @@ type = string
 variable "sec" {
 type = string
 }
-variable "key_p" {
-  type = string
-}
-
